@@ -45,9 +45,16 @@ async function getTourneyInfo() {
     tourney_info.push(draft_size);
     var draft_rounds = raw_tourney_info[7].textContent.trim();
     tourney_info.push(draft_rounds);
-    var rake = raw_tourney_info[8].textContent.trim();
+
+    //if tourney_name contains "Dawg Bowl" then rake is "0" and start_time is raw_tourney_info[8].textContent.trim();
+    if (tourney_name.includes("Dawg Bowl")) {
+        var rake = "0";
+        var start_time = raw_tourney_info[8].textContent.trim();
+    } else {
+        var rake = raw_tourney_info[8].textContent.trim();
+        var start_time = raw_tourney_info[9].textContent.trim();
+    }
     tourney_info.push(rake);
-    var start_time = raw_tourney_info[9].textContent.trim();
     tourney_info.push(start_time);
 
     document.querySelector(".styles__closeButton__ZYuEF").click();
